@@ -18,5 +18,21 @@ class OneToHundredStream extends Readable {
     }
 }
 
+class InverseNumberStream extends Transform {
+    _transform(chank, encoding, callback){
+        const transformed = Number(chank.toSTring()) * -1;
+
+        callback(null, Buffer.from(String(transformed)));
+    }
+}
+
+class MultiplyByTenStream extends Writable {
+    _write(chank, encoding, callback){
+        console.log(Number(chank.toSTring()) * 10);
+        callback()
+    }
+}
+
 new OneToHundredStream()
-    .pipe(process.stdout)
+    .pipe(new InverseNumberStream())
+    .pipe(new MultiplyByTenStream())
