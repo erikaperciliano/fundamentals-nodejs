@@ -1,6 +1,12 @@
 import http from 'node:http';
+
 import { json } from './middlewares/json.js';
 import { routes } from './routes.js';
+
+
+// Query Parameters: URL Stateful => Filters, Paginate
+// Route Parameters: Identification of resource
+// Request Body: Send formularies information (HTTPs)
 
 
 const server = http.createServer( async (req, res) => {
